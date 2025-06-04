@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhuma - Premium Digital Products & Subscriptions</title>
+    <meta name="description" content="Get premium digital subscriptions at unbeatable prices. Adobe Creative Cloud, Microsoft Office, VPN services, and more.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+        }
+        
+        /* Theme Variables */
+        :root {
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --secondary: #f1f5f9;
+            --secondary-foreground: #0f172a;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --border: #e2e8f0;
+        }
+        
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --primary-foreground: #1e293b;
+            --secondary: #1e293b;
+            --secondary-foreground: #f8fafc;
+            --muted: #334155;
+            --muted-foreground: #94a3b8;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --border: #334155;
+        }
+        
+        /* Custom Animations */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hide elements by default for mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        /* Theme toggle dropdown */
+        .theme-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            min-width: 120px;
+        }
+        
+        .theme-dropdown.active {
+            display: block;
+        }
+        
+        /* Search Modal */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+        
+        .search-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Tabs */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-button.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+    </style>
+</head>
+<body class="antialiased" style="background-color: var(--background); color: var(--foreground);">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-2 group">
+                    <div class="relative">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200">
+                            <i data-lucide="zap" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Webhuma
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-600 transition-colors duration-200 relative group" style="color: var(--muted-foreground);">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-200"></span>
+                    </a>
+                    <a href="#services" class="text-sm font-medium hover:text-blue-600 transition-colors duration-200 relative group" style="color: var(--muted-foreground);">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-200"></span>
+                    </a>
+                    <a href="#about" class="text-sm font-medium hover:text-blue-600 transition-colors duration-200 relative group" style="color: var(--muted-foreground);">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-200"></span>
+                    </a>
+                    <a href="#faq" class="text-sm font-medium hover:text-blue-600 transition-colors duration-200 relative group" style="color: var(--muted-foreground);">
+                        FAQ
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-200"></span>
+                    </a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-600 transition-colors duration-200 relative group" style="color: var(--muted-foreground);">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-200"></span>
+                    </a>
+                </nav>
+
+                <!-- Right Side -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Button -->
+                    <button onclick="openSearchModal()" class="relative h-9 w-9 p-0 xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" style="border-color: var(--border);">
+                        <i data-lucide="search" class="h-4 w-4 xl:mr-2"></i>
+                        <span class="hidden xl:inline-flex">Search products...</span>
+                        <kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 xl:flex" style="background-color: var(--muted); border-color: var(--border);">
+                            <span class="text-xs">⌘</span>K
+                        </kbd>
+                    </button>
+                    
+                    <!-- Theme Toggle -->
+                    <div class="relative">
+                        <button onclick="toggleThemeDropdown()" class="h-9 w-9 px-0 border-0 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
+                            <i data-lucide="sun" class="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"></i>
+                            <i data-lucide="moon" class="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"></i>
+                        </button>
+                        <div id="theme-dropdown" class="theme-dropdown">
+                            <button onclick="setTheme('light')" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center">
+                                <i data-lucide="sun" class="mr-2 h-4 w-4"></i>
+                                Light
+                                <span id="light-check" class="ml-auto hidden">✓</span>
+                            </button>
+                            <button onclick="setTheme('dark')" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center">
+                                <i data-lucide="moon" class="mr-2 h-4 w-4"></i>
+                                Dark
+                                <span id="dark-check" class="ml-auto hidden">✓</span>
+                            </button>
+                            <button onclick="setTheme('system')" class="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center">
+                                <i data-lucide="monitor" class="mr-2 h-4 w-4"></i>
+                                System
+                                <span id="system-check" class="ml-auto hidden">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a href="https://t.me/webhumacom" target="_blank" class="hidden md:inline-flex bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-4 py-2 rounded-md transition-all">
+                        Get Started
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden h-9 w-9 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="h-5 w-5"></i>
+                        <i data-lucide="x" id="close-icon" class="h-5 w-5 hidden"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden mt-4 pb-4 border-t" style="border-color: var(--border);">
+                <nav class="flex flex-col space-y-4 pt-4">
+                    <div class="mb-4">
+                        <button onclick="openSearchModal()" class="w-full flex items-center justify-center px-3 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" style="border-color: var(--border);">
+                            <i data-lucide="search" class="h-4 w-4 mr-2"></i>
+                            Search products...
+                        </button>
+                    </div>
+                    <a href="#home" class="text-sm font-medium hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);" onclick="toggleMobileMenu()">Home</a>
+                    <a href="#services" class="text-sm font-medium hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);" onclick="toggleMobileMenu()">Services</a>
+                    <a href="#about" class="text-sm font-medium hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);" onclick="toggleMobileMenu()">About</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);" onclick="toggleMobileMenu()">FAQ</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);" onclick="toggleMobileMenu()">Contact</a>
+                    <a href="https://t.me/webhumacom" target="_blank" class="mt-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center transition-all">
+                        Get Started
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-modal">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-96 overflow-hidden" style="background-color: var(--background); border: 1px solid var(--border);">
+            <div class="px-6 pt-6 pb-0">
+                <h2 class="text-lg font-semibold mb-4">Search Products</h2>
+                <div class="relative">
+                    <i data-lucide="search" class="absolute left-3 top-3 h-4 w-4" style="color: var(--muted-foreground);"></i>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Search for Adobe, Microsoft, VPN, AI tools..."
+                        class="w-full pl-10 pr-4 py-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        style="background-color: var(--background); border-color: var(--border); color: var(--foreground);"
+                        onkeyup="handleSearch(event)"
+                    />
+                </div>
+            </div>
+            
+            <div id="search-results" class="px-6 pb-6 max-h-64 overflow-y-auto">
+                <div class="text-center py-8">
+                    <i data-lucide="search" class="h-12 w-12 mx-auto mb-4" style="color: var(--muted-foreground);"></i>
+                    <h3 class="font-medium mb-2">Start typing to search</h3>
+                    <p class="text-sm" style="color: var(--muted-foreground);">
+                        Try searching for "Adobe", "Microsoft", "VPN", or other keywords
+                    </p>
+                </div>
+            </div>
+            
+            <div class="px-6 pb-6">
+                <button onclick="closeSearchModal()" class="w-full py-2 px-4 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
+
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div class="absolute top-40 left-40 w-80 h-80 bg-gradient-to-r from-yellow-400 to-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 py-20 text-center">
+            <!-- Badge -->
+            <div class="mb-6 inline-flex items-center px-4 py-2 rounded-full text-sm bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 border-0">
+                <i data-lucide="star" class="w-4 h-4 mr-2 text-yellow-500"></i>
+                Trusted by 10,000+ customers worldwide
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    Premium Digital
+                </span>
+                <br />
+                <span style="color: var(--foreground);">Subscriptions</span>
+            </h1>
+
+            <!-- Subheading -->
+            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed" style="color: var(--muted-foreground);">
+                Get access to premium software and services at unbeatable prices. Adobe Creative Cloud, Microsoft Office, VPN
+                services, and 200+ more digital products.
+            </p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center gap-8 mb-12">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="users" class="w-5 h-5 text-blue-600"></i>
+                    <span class="text-sm font-medium">10,000+ Happy Customers</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="shield" class="w-5 h-5 text-green-600"></i>
+                    <span class="text-sm font-medium">100% Secure & Guaranteed</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-purple-600"></i>
+                    <span class="text-sm font-medium">Instant Delivery</span>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#services" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 inline-flex items-center">
+                    Browse Products
+                    <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                </a>
+                <a href="https://t.me/webhumacom" target="_blank" class="text-lg px-8 py-6 rounded-xl border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 inline-flex items-center" style="border-color: var(--border); color: var(--foreground);">
+                    Contact Us
+                </a>
+            </div>
+
+            <!-- Quick Search -->
+            <div class="mt-12 max-w-md mx-auto">
+                <button onclick="openSearchModal()" class="w-full flex items-center justify-center px-4 py-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" style="border-color: var(--border); background-color: var(--background);">
+                    <i data-lucide="search" class="h-4 w-4 mr-2" style="color: var(--muted-foreground);"></i>
+                    <span style="color: var(--muted-foreground);">Search products...</span>
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-60">
+                <div class="text-sm font-medium">Trusted by professionals worldwide</div>
+                <div class="flex space-x-1">
+                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400"></i>
+                    <span class="ml-2 text-sm">4.9/5 rating</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20" style="background-color: var(--muted);">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Why Choose
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Webhuma</span>?
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto" style="color: var(--muted-foreground);">
+                    We provide premium digital products with unmatched quality, security, and customer service.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="shield" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">100% Secure & Guaranteed</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">All our products come with full warranty and money-back guarantee. Your satisfaction is our priority.</p>
+                </div>
+
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="zap" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Instant Delivery</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">Get your digital products delivered instantly to your email. No waiting, no delays.</p>
+                </div>
+
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="users" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">10,000+ Happy Customers</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">Join thousands of satisfied customers who trust us for their digital product needs.</p>
+                </div>
+
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="headphones" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">24/7 Customer Support</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">Our dedicated support team is available round the clock to assist you with any queries.</p>
+                </div>
+
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="credit-card" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Secure Payment</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">Multiple secure payment options available. Your financial information is always protected.</p>
+                </div>
+
+                <div class="group p-8 rounded-2xl border hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <i data-lucide="globe" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Global Availability</h3>
+                    <p class="text-center leading-relaxed" style="color: var(--muted-foreground);">Our services are available worldwide. Get premium software no matter where you are.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Our
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Premium Services
+                    </span>
+                </h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--muted-foreground);">
+                    Choose from our extensive collection of premium digital products and subscriptions at unbeatable prices.
+                </p>
+            </div>
+
+            <!-- Service Tabs -->
+            <div class="w-full">
+                <div class="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-12 gap-2">
+                    <button onclick="showTab('adobe')" class="tab-button active text-xs md:text-sm px-3 py-2 rounded-md transition-colors" style="background-color: var(--primary); color: var(--primary-foreground);">
+                        Adobe
+                    </button>
+                    <button onclick="showTab('microsoft')" class="tab-button text-xs md:text-sm px-3 py-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--foreground);">
+                        Microsoft
+                    </button>
+                    <button onclick="showTab('design')" class="tab-button text-xs md:text-sm px-3 py-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--foreground);">
+                        Design
+                    </button>
+                    <button onclick="showTab('vpn')" class="tab-button text-xs md:text-sm px-3 py-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--foreground);">
+                        VPN
+                    </button>
+                    <button onclick="showTab('ai')" class="tab-button text-xs md:text-sm px-3 py-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--foreground);">
+                        AI
+                    </button>
+                    <button onclick="showTab('video')" class="tab-button text-xs md:text-sm px-3 py-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--foreground);">
+                        Video
+                    </button>
+                </div>
+
+                <!-- Adobe Products Tab -->
+                <div id="adobe-tab" class="tab-content active">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Adobe Products</h3>
+                        <p style="color: var(--muted-foreground);">Creative Cloud, Photoshop, Illustrator and more</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Adobe Creative Cloud 1 Month -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Adobe Creative Cloud</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$10.99</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Month • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Adobe Creative Cloud 12 Months -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Adobe Creative Cloud</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$49.99</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">12 Months • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Adobe Photoshop -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Adobe Photoshop</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$6.99</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Month • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microsoft Products Tab -->
+                <div id="microsoft-tab" class="tab-content">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Microsoft Products</h3>
+                        <p style="color: var(--muted-foreground);">Windows, Office, and productivity tools</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Windows 11 Pro -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Windows 10/11 Pro</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$4.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">Lifetime • Retail Key</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Lifetime</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Office 2021 Pro -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Office 2021 Pro</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$8.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">Lifetime • 1 PC</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Lifetime</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Office 365 -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Office 365</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$16.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Year • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>12 Months</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Tools Tab -->
+                <div id="design-tab" class="tab-content">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Design & Creative Tools</h3>
+                        <p style="color: var(--muted-foreground);">Canva, Figma, and other creative platforms</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Canva Pro -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Canva Pro</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$15.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">12 Months • 500 Users</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>12 Months</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Figma Professional -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Figma Professional</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$10.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Month • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VPN & Security Tab -->
+                <div id="vpn-tab" class="tab-content">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">VPN & Security</h3>
+                        <p style="color: var(--muted-foreground);">Secure your online presence</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- NordVPN -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">NordVPN</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$45.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">12 Months • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Tools Tab -->
+                <div id="ai-tab" class="tab-content">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">AI & Productivity Tools</h3>
+                        <p style="color: var(--muted-foreground);">ChatGPT, Grammarly, and AI-powered tools</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- ChatGPT Plus -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">ChatGPT Plus</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$15.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Month • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>25 Days</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Grammarly Premium -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Grammarly Premium</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$7.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Month • Personal</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Tools Tab -->
+                <div id="video-tab" class="tab-content">
+                    <div class="mb-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Video & Audio Tools</h3>
+                        <p style="color: var(--muted-foreground);">Filmora, CapCut, and video editing software</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Filmora 14 -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">Filmora 14</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$8.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">1 Year • Windows/Mac</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>1 Year</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- CapCut Pro -->
+                        <div class="group border rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1" style="background-color: var(--background); border-color: var(--border);">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold leading-tight">CapCut Pro</h4>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                        Available
+                                    </span>
+                                </div>
+                                <div class="text-3xl font-bold text-blue-600 mb-2">$12.00</div>
+                                <p class="text-sm mb-4" style="color: var(--muted-foreground);">4 Months • Shared</p>
+                                
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Full Warranty</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>Instant Delivery</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-md text-center inline-flex items-center justify-center transition-all">
+                                    Order Now
+                                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="mb-4" style="color: var(--muted-foreground);">Can't find what you're looking for?</p>
+                <a href="https://t.me/webhumacom" target="_blank" class="border-2 hover:bg-gray-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg inline-flex items-center transition-all" style="border-color: var(--border); color: var(--foreground);">
+                    Contact us for custom requests
+                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20" style="background-color: var(--muted);">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        About
+                        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Webhuma
+                        </span>
+                    </h2>
+                    <p class="text-lg mb-6 leading-relaxed" style="color: var(--muted-foreground);">
+                        Webhuma is your trusted partner for premium digital products and subscriptions. We've been serving
+                        customers worldwide with authentic, affordable software solutions since our inception.
+                    </p>
+                    <p class="text-lg mb-8 leading-relaxed" style="color: var(--muted-foreground);">
+                        Our mission is to make premium software accessible to everyone without compromising on quality or
+                        security. We work directly with authorized distributors to ensure you get genuine products at the best
+                        prices.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium">Authorized reseller partnerships</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium">100% genuine software licenses</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium">Money-back guarantee</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-sm font-medium">Instant delivery system</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="text-center p-6 rounded-2xl border hover:shadow-lg transition-all duration-300" style="background-color: var(--background); border-color: var(--border);">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="users" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            10,000+
+                        </div>
+                        <div class="text-sm font-medium" style="color: var(--muted-foreground);">Happy Customers</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl border hover:shadow-lg transition-all duration-300" style="background-color: var(--background); border-color: var(--border);">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="award" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            200+
+                        </div>
+                        <div class="text-sm font-medium" style="color: var(--muted-foreground);">Digital Products</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl border hover:shadow-lg transition-all duration-300" style="background-color: var(--background); border-color: var(--border);">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="shield" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            99.9%
+                        </div>
+                        <div class="text-sm font-medium" style="color: var(--muted-foreground);">Uptime Guarantee</div>
+                    </div>
+
+                    <div class="text-center p-6 rounded-2xl border hover:shadow-lg transition-all duration-300" style="background-color: var(--background); border-color: var(--border);">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="zap" class="h-8 w-8 text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            24/7
+                        </div>
+                        <div class="text-sm font-medium" style="color: var(--muted-foreground);">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20" style="background-color: var(--muted);">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Frequently Asked
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Questions
+                    </span>
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto" style="color: var(--muted-foreground);">
+                    Find answers to common questions about our products and services.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="border rounded-lg px-6" style="background-color: var(--background); border-color: var(--border);">
+                    <button onclick="toggleFAQ(0)" class="w-full text-left font-semibold py-4 flex justify-between items-center">
+                        Are your products genuine and legal?
+                        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="pb-4 hidden leading-relaxed" style="color: var(--muted-foreground);">
+                        Yes, all our products are 100% genuine and legal. We work with authorized distributors and resellers to ensure you receive authentic licenses and subscriptions.
+                    </div>
+                </div>
+
+                <div class="border rounded-lg px-6" style="background-color: var(--background); border-color: var(--border);">
+                    <button onclick="toggleFAQ(1)" class="w-full text-left font-semibold py-4 flex justify-between items-center">
+                        How quickly will I receive my product?
+                        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="pb-4 hidden leading-relaxed" style="color: var(--muted-foreground);">
+                        Most products are delivered instantly via email after payment confirmation. Some products may take up to 24 hours for manual processing.
+                    </div>
+                </div>
+
+                <div class="border rounded-lg px-6" style="background-color: var(--background); border-color: var(--border);">
+                    <button onclick="toggleFAQ(2)" class="w-full text-left font-semibold py-4 flex justify-between items-center">
+                        What payment methods do you accept?
+                        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="pb-4 hidden leading-relaxed" style="color: var(--muted-foreground);">
+                        We accept various payment methods including credit cards, PayPal, cryptocurrency, and bank transfers. All payments are processed securely.
+                    </div>
+                </div>
+
+                <div class="border rounded-lg px-6" style="background-color: var(--background); border-color: var(--border);">
+                    <button onclick="toggleFAQ(3)" class="w-full text-left font-semibold py-4 flex justify-between items-center">
+                        Do you offer refunds?
+                        <i data-lucide="chevron-down" class="h-4 w-4 transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="pb-4 hidden leading-relaxed" style="color: var(--muted-foreground);">
+                        Yes, we offer a money-back guarantee. If you're not satisfied with your purchase or encounter any issues, contact us within the warranty period for a full refund.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fillRule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fillOpacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Ready to Get Started?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Join thousands of satisfied customers and get access to premium digital products at unbeatable prices.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://t.me/webhumacom" target="_blank" class="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 inline-flex items-center">
+                    <i data-lucide="message-circle" class="mr-2 h-5 w-5"></i>
+                    Contact Us on Telegram
+                </a>
+                <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-6 rounded-xl transition-all duration-200 inline-flex items-center">
+                    Browse Products
+                    <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                </a>
+            </div>
+
+            <div class="mt-12 text-blue-100 text-sm">
+                <p>💬 Available 24/7 • 🚀 Instant Delivery • 🛡️ 100% Secure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white">
+        <div class="container mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="lg:col-span-1">
+                    <a href="#home" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i data-lucide="zap" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Webhuma
+                        </span>
+                    </a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Your trusted partner for premium digital products and subscriptions at unbeatable prices.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 text-sm">
+                            <i data-lucide="message-circle" class="h-4 w-4 text-blue-400"></i>
+                            <a href="https://t.me/webhumacom" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                @webhumacom
+                            </a>
+                        </div>
+                        <div class="flex items-center space-x-3 text-sm">
+                            <i data-lucide="globe" class="h-4 w-4 text-blue-400"></i>
+                            <span class="text-gray-400">Available Worldwide</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Products</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Adobe Products</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Microsoft Office</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">VPN Services</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Design Tools</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">AI Tools</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Video Editing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors text-sm">FAQ</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+                        <li><a href="refund.html" class="text-gray-400 hover:text-white transition-colors text-sm">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="support.html" class="text-gray-400 hover:text-white transition-colors text-sm">Customer Support</a></li>
+                        <li><a href="installation.html" class="text-gray-400 hover:text-white transition-colors text-sm">Installation Help</a></li>
+                        <li><a href="technical.html" class="text-gray-400 hover:text-white transition-colors text-sm">Technical Issues</a></li>
+                        <li><a href="billing.html" class="text-gray-400 hover:text-white transition-colors text-sm">Billing Support</a></li>
+                        <li><a href="updates.html" class="text-gray-400 hover:text-white transition-colors text-sm">Product Updates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2024 Webhuma. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 text-sm text-gray-400">
+                        <span>🛡️ 100% Secure</span>
+                        <span>🚀 Instant Delivery</span>
+                        <span>💬 24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme Management
+        let currentTheme = localStorage.getItem('webhuma-theme') || 'system';
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('webhuma-theme', theme);
+            
+            // Remove all theme classes
+            document.documentElement.removeAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else if (theme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+            } else if (theme === 'system') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            }
+            
+            updateThemeChecks();
+            closeThemeDropdown();
+        }
+
+        function updateThemeChecks() {
+            document.getElementById('light-check').classList.add('hidden');
+            document.getElementById('dark-check').classList.add('hidden');
+            document.getElementById('system-check').classList.add('hidden');
+            
+            if (currentTheme === 'light') {
+                document.getElementById('light-check').classList.remove('hidden');
+            } else if (currentTheme === 'dark') {
+                document.getElementById('dark-check').classList.remove('hidden');
+            } else if (currentTheme === 'system') {
+                document.getElementById('system-check').classList.remove('hidden');
+            }
+        }
+
+        function toggleThemeDropdown() {
+            const dropdown = document.getElementById('theme-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function closeThemeDropdown() {
+            const dropdown = document.getElementById('theme-dropdown');
+            dropdown.classList.remove('active');
+        }
+
+        // Initialize theme on page load
+        setTheme(currentTheme);
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (currentTheme === 'system') {
+                setTheme('system');
+            }
+        });
+
+        // Close theme dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('theme-dropdown');
+            const button = event.target.closest('button[onclick="toggleThemeDropdown()"]');
+            
+            if (!button && !dropdown.contains(event.target)) {
+                closeThemeDropdown();
+            }
+        });
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileMenu.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                header.style.backdropFilter = 'blur(12px)';
+                header.style.borderBottom = '1px solid var(--border)';
+                header.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'transparent';
+                header.style.backdropFilter = 'none';
+                header.style.borderBottom = 'none';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Search Modal
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.add('active');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.remove('active');
+            document.getElementById('search-input').value = '';
+            document.getElementById('search-results').innerHTML = `
+                <div class="text-center py-8">
+                    <i data-lucide="search" class="h-12 w-12 mx-auto mb-4" style="color: var(--muted-foreground);"></i>
+                    <h3 class="font-medium mb-2">Start typing to search</h3>
+                    <p class="text-sm" style="color: var(--muted-foreground);">
+                        Try searching for "Adobe", "Microsoft", "VPN", or other keywords
+                    </p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function handleSearch(event) {
+            const query = event.target.value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            
+            if (query.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <i data-lucide="search" class="h-12 w-12 mx-auto mb-4" style="color: var(--muted-foreground);"></i>
+                        <h3 class="font-medium mb-2">Start typing to search</h3>
+                        <p class="text-sm" style="color: var(--muted-foreground);">
+                            Try searching for "Adobe", "Microsoft", "VPN", or other keywords
+                        </p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            // Simple search simulation
+            const products = [
+                { name: 'Adobe Creative Cloud', category: 'Adobe', price: '$10.99', duration: '1 Month' },
+                { name: 'Microsoft Office 365', category: 'Microsoft', price: '$16.00', duration: '1 Year' },
+                { name: 'Windows 11 Pro', category: 'Microsoft', price: '$4.00', duration: 'Lifetime' },
+                { name: 'NordVPN', category: 'VPN', price: '$45.00', duration: '12 Months' },
+                { name: 'ChatGPT Plus', category: 'AI', price: '$15.00', duration: '1 Month' },
+                { name: 'Grammarly Premium', category: 'AI', price: '$7.00', duration: '1 Month' },
+                { name: 'Canva Pro', category: 'Design', price: '$15.00', duration: '12 Months' },
+                { name: 'Filmora 14', category: 'Video', price: '$8.00', duration: '1 Year' }
+            ];
+
+            const results = products.filter(product => 
+                product.name.toLowerCase().includes(query) || 
+                product.category.toLowerCase().includes(query)
+            );
+
+            if (results.length > 0) {
+                resultsContainer.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="text-sm mb-3" style="color: var(--muted-foreground);">
+                            Found ${results.length} result${results.length !== 1 ? 's' : ''}
+                        </div>
+                        ${results.map(result => `
+                            <div class="flex items-center justify-between p-3 rounded-lg border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group cursor-pointer" style="border-color: var(--border);" onclick="closeSearchModal(); document.getElementById('services').scrollIntoView({ behavior: 'smooth' });">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h4 class="font-medium text-sm group-hover:text-blue-600 transition-colors">
+                                            ${result.name}
+                                        </h4>
+                                        <span class="px-2 py-1 text-xs rounded-full border" style="border-color: var(--border); color: var(--muted-foreground);">
+                                            ${result.category}
+                                        </span>
+                                    </div>
+                                    <div class="text-xs" style="color: var(--muted-foreground);">
+                                        ${result.duration}
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="text-right">
+                                        <div class="font-semibold text-blue-600">${result.price}</div>
+                                    </div>
+                                    <i data-lucide="arrow-right" class="h-4 w-4 group-hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);"></i>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <i data-lucide="search" class="h-12 w-12 mx-auto mb-4" style="color: var(--muted-foreground);"></i>
+                        <h3 class="font-medium mb-2">No products found</h3>
+                        <p class="text-sm mb-4" style="color: var(--muted-foreground);">
+                            Try searching for "Adobe", "Microsoft", "VPN", or other keywords
+                        </p>
+                        <a href="https://t.me/webhumacom" target="_blank" class="border px-4 py-2 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" style="border-color: var(--border); color: var(--foreground);">
+                            Request Custom Product
+                        </a>
+                    </div>
+                `;
+            }
+            
+            lucide.createIcons();
+        }
+
+        // Close search modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeSearchModal();
+            }
+            
+            // Open search with Ctrl/Cmd + K
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                openSearchModal();
+            }
+        });
+
+        // Close search modal when clicking outside
+        document.getElementById('search-modal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeSearchModal();
+            }
+        });
+
+        // Service Tabs
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+                button.style.backgroundColor = 'transparent';
+                button.style.color = 'var(--foreground)';
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            event.target.style.backgroundColor = 'var(--primary)';
+            event.target.style.color = 'var(--primary-foreground)';
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

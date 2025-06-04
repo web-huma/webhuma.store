@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support - Webhuma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body { font-family: 'Poppins', 'Inter', system-ui, sans-serif; }
+        :root {
+            --primary: #3b82f6;
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+        }
+        [data-theme="dark"] {
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #334155;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+        }
+    </style>
+</head>
+<body style="background-color: var(--background); color: var(--foreground);">
+    <div class="min-h-screen">
+        <main class="pt-24 pb-16">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="mb-8">
+                    <a href="index.html" class="inline-flex items-center mb-4 text-sm hover:text-blue-600 transition-colors" style="color: var(--muted-foreground);">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i>
+                        Back to Home
+                    </a>
+
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-xl flex items-center justify-center">
+                            <i data-lucide="headphones" class="h-6 w-6 text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-3xl md:text-4xl font-bold">Customer Support</h1>
+                            <p style="color: var(--muted-foreground);">We're here to help you 24/7</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Contact -->
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-6 text-center" style="background-color: var(--background);">
+                        <i data-lucide="message-circle" class="h-8 w-8 text-blue-600 mx-auto mb-2"></i>
+                        <h3 class="text-xl font-bold mb-2">Telegram Support</h3>
+                        <p class="text-sm mb-4" style="color: var(--muted-foreground);">Fastest response time</p>
+                        <a href="https://t.me/webhumacom" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md inline-block transition-colors">
+                            Chat Now
+                        </a>
+                        <p class="text-sm mt-2" style="color: var(--muted-foreground);">Average response: 5 minutes</p>
+                    </div>
+
+                    <div class="border rounded-lg p-6 text-center" style="background-color: var(--background); border-color: var(--border);">
+                        <i data-lucide="mail" class="h-8 w-8 text-green-600 mx-auto mb-2"></i>
+                        <h3 class="text-xl font-bold mb-2">Email Support</h3>
+                        <p class="text-sm mb-4" style="color: var(--muted-foreground);">Detailed assistance</p>
+                        <a href="mailto:support@webhuma.com" class="w-full border px-4 py-2 rounded-md inline-block hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" style="border-color: var(--border);">
+                            Send Email
+                        </a>
+                        <p class="text-sm mt-2" style="color: var(--muted-foreground);">Average response: 2 hours</p>
+                    </div>
+
+                    <div class="border rounded-lg p-6 text-center" style="background-color: var(--background); border-color: var(--border);">
+                        <i data-lucide="clock" class="h-8 w-8 text-purple-600 mx-auto mb-2"></i>
+                        <h3 class="text-xl font-bold mb-2">24/7 Availability</h3>
+                        <p class="text-sm mb-4" style="color: var(--muted-foreground);">Round-the-clock support</p>
+                        <div class="w-full py-2 px-4 bg-green-100 dark:bg-green-900 rounded-md">
+                            <span class="text-green-800 dark:text-green-200 font-medium">Online Now</span>
+                        </div>
+                        <p class="text-sm mt-2" style="color: var(--muted-foreground);">Always available</p>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="rounded-lg p-8 text-center" style="background-color: var(--muted);">
+                    <h2 class="text-2xl font-bold mb-4">Get in Touch</h2>
+                    <p class="mb-6" style="color: var(--muted-foreground);">
+                        Our support team is available 24/7 to help with any questions or issues.
+                    </p>
+                    <a href="https://t.me/webhumacom" target="_blank" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg inline-flex items-center transition-all">
+                        <i data-lucide="message-circle" class="mr-2 h-5 w-5"></i>
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
